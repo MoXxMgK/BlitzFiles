@@ -1,6 +1,6 @@
 ﻿namespace BlitzFiles.Data
 {
-    public class FilePath
+    public class FilePath : IEntity
     {
         public Guid Id { get; set; }
         public string StorageFileName { get; set; }

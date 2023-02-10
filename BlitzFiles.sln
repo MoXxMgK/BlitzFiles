@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlitzFiles.Core", "BlitzFil
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlitzFiles.Business", "BlitzFiles.Business\BlitzFiles.Business.csproj", "{761B841B-1AD3-492F-B9FA-E36980A9CCBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlitzFiles.DataTransfer", "BlitzFiles.DataTransfer\BlitzFiles.DataTransfer.csproj", "{A877A592-67B9-4143-A537-55CDB9C5BF8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlitzFiles.DataTransfer", "BlitzFiles.DataTransfer\BlitzFiles.DataTransfer.csproj", "{A877A592-67B9-4143-A537-55CDB9C5BF8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlitzFiles.CQS", "BlitzFiles.CQS\BlitzFiles.CQS.csproj", "{35BF28AD-455E-41A1-9888-FBE96ED76E89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlitzFiles.CQS", "BlitzFiles.CQS\BlitzFiles.CQS.csproj", "{35BF28AD-455E-41A1-9888-FBE96ED76E89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlitzFiles.Models", "BlitzFiles.Models\BlitzFiles.Models.csproj", "{372E7610-D2A0-4BF9-9CE1-3B69EB0C629F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlitzFiles.Models", "BlitzFiles.Models\BlitzFiles.Models.csproj", "{372E7610-D2A0-4BF9-9CE1-3B69EB0C629F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

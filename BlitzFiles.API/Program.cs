@@ -1,5 +1,8 @@
+using AutoMapper;
+using MediatR;
 using BlitzFiles.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace BlitzFiles.API
 {
@@ -13,6 +16,11 @@ namespace BlitzFiles.API
 
             builder.Services.AddDbContext<BlitzFilesContext>(
                 opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("BlitzFilesDB")));
+
+            //builder.Services.AddAutoMapper(Assembly.Load("BlitzFiles.DataTransfer"));
+            builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
