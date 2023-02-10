@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BlitzFiles.DataTransfer\BlitzFiles.DataTransfer.csproj" />
+    <ProjectReference Include="..\BlitzFiles.Models\BlitzFiles.Models.csproj" />
+  </ItemGroup>
+
 </Project>

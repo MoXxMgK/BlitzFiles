@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BlitzFiles.Data;
-
+using BlitzFiles.Models;
 using File = BlitzFiles.Data.File;
 
 namespace BlitzFiles.DataTransfer.Profiles
@@ -30,6 +30,15 @@ namespace BlitzFiles.DataTransfer.Profiles
                 .ForCtorParam("isPublic", opt => opt.MapFrom(dto => dto.IsPublic))
                 .ForMember(f => f.Id, opt => opt.MapFrom(dto => dto.Id))
                 .ForMember(f => f.UserId, opt => opt.MapFrom(dto => dto.UserId));
+
+            CreateMap<FileDTO, FileResponseModel>()
+                .ForCtorParam("name", opt => opt.MapFrom(dto => dto.Name))
+                .ForCtorParam("extention", opt => opt.MapFrom(dto => dto.Extention))
+                .ForCtorParam("fileSize", opt => opt.MapFrom(dto => dto.FileSize))
+                .ForCtorParam("uploadDate", opt => opt.MapFrom(dto => dto.UploadDate))
+                .ForCtorParam("expirationDate", opt => opt.MapFrom(dto => dto.ExpirationDate))
+                .ForMember(frm => frm.Id, opt => opt.MapFrom(dto => dto.Id))
+                .ForMember(frm => frm.DownloadUrl, opt => opt.MapFrom(dto => dto.FilePath.StorageFileName));  // Replace this to actual link
         }
     }
 }

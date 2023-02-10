@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlitzFiles.Core\BlitzFiles.Core.csproj" />
+    <ProjectReference Include="..\BlitzFiles.CQS\BlitzFiles.CQS.csproj" />
+    <ProjectReference Include="..\BlitzFiles.DataTransfer\BlitzFiles.DataTransfer.csproj" />
+    <ProjectReference Include="..\BlitzFiles.Data\BlitzFiles.Data.csproj" />
+    <ProjectReference Include="..\BlitzFiles.Models\BlitzFiles.Models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -25,7 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BlitzFiles.Business\BlitzFiles.Business.csproj" />
+    <ProjectReference Include="..\BlitzFiles.Core\BlitzFiles.Core.csproj" />
+    <ProjectReference Include="..\BlitzFiles.DataTransfer\BlitzFiles.DataTransfer.csproj" />
     <ProjectReference Include="..\BlitzFiles.Data\BlitzFiles.Data.csproj" />
+    <ProjectReference Include="..\BlitzFiles.Models\BlitzFiles.Models.csproj" />
   </ItemGroup>
 
 </Project>

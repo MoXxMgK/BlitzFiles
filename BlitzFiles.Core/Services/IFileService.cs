@@ -1,6 +1,9 @@
-﻿namespace BlitzFiles.Core
+﻿using BlitzFiles.DataTransfer;
+using BlitzFiles.Models;
+
+namespace BlitzFiles.Core
 {
-    public interface IFileService
+    public interface IFileService : ICRUDService<FileDTO>
     {
 
     }
