@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BlitzFiles.CQS
 {
-    public abstract class RequestHandler<TIn, TOut> : IRequestHandler<TIn, TOut> where TIn : IRequest<TOut>
+    public abstract class RequestHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
     {
         protected readonly IMapper mapper;
         protected readonly BlitzFilesContext db;
@@ -17,6 +17,6 @@ namespace BlitzFiles.CQS
             this.db = db;
         }
 
-        public abstract Task<TOut> Handle(TIn request, CancellationToken cancellationToken);
+        public abstract Task<TResult> Handle(TRequest request, CancellationToken cancellationToken);
     }
 }

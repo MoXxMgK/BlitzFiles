@@ -6,8 +6,6 @@ namespace BlitzFiles.Data
     {
         public DbSet<File> Files { get; set; }
         public DbSet<FilePath> FilePaths { get; set; }
-        public DbSet<User> Users { get; set; }
-
         public BlitzFilesContext(DbContextOptions<BlitzFilesContext> options) : base(options)
         {
 

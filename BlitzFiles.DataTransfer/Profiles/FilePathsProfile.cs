@@ -14,9 +14,9 @@ namespace BlitzFiles.DataTransfer.Profiles
                 .ForMember(dto => dto.File, opt => opt.MapFrom(fp => fp.File));
 
             CreateMap<FilePathDTO, FilePath>()
-                .ForCtorParam("storageFileName", opt => opt.MapFrom(dto => dto.StorageFileName))
-                .ForCtorParam("fileId", opt => opt.MapFrom(dto => dto.FileId))
-                .ForMember(fp => fp.Id, opt => opt.MapFrom(dto => dto.StorageFileName));
+                .ForMember(fp => fp.Id, opt => opt.MapFrom(dto => dto.Id))
+                .ForMember(fp => fp.StorageFileName, opt => opt.MapFrom(dto => dto.StorageFileName))
+                .ForMember(fp => fp.FileId, opt => opt.MapFrom(dto => dto.FileId));
         }
     }
 }

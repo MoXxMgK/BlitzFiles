@@ -17,7 +17,6 @@ namespace BlitzFiles.CQS
             var entity = await db.Files
                 .AsNoTracking()
                 .Include(f => f.FilePath)
-                .Include(f => f.User)
                 .FirstOrDefaultAsync(f => f.Id == request.Id, cancellationToken);
 
             return mapper.Map<FileDTO>(entity);

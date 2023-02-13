@@ -9,15 +9,5 @@
         public DateTime UploadDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public string DownloadUrl { get; set; }
-
-        public FileResponseModel(string name, string extention, long fileSize, 
-            DateTime uploadDate, DateTime expirationDate)
-        {
-            Name = name;
-            Extention = extention;
-            FileSize = fileSize;
-            UploadDate = uploadDate;
-            ExpirationDate = expirationDate;
-        }
     }
 }

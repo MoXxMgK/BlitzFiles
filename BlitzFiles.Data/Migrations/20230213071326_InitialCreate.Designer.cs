@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlitzFiles.Data.Migrations
 {
     [DbContext(typeof(BlitzFilesContext))]
-    [Migration("20230209094607_InitialCreate")]
+    [Migration("20230213071326_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -45,9 +45,6 @@ namespace BlitzFiles.Data.Migrations
                     b.Property<long>("FileSize")
                         .HasColumnType("bigint");
 
-                    b.Property<bool>("IsPublic")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -55,12 +52,7 @@ namespace BlitzFiles.Data.Migrations
                     b.Property<DateTime>("UploadDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Files");
                 });
@@ -86,34 +78,6 @@ namespace BlitzFiles.Data.Migrations
                     b.ToTable("FilePaths");
                 });
 
-            modelBuilder.Entity("BlitzFiles.Data.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("BlitzFiles.Data.File", b =>
-                {
-                    b.HasOne("BlitzFiles.Data.User", "User")
-                        .WithMany("Files")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("BlitzFiles.Data.FilePath", b =>
                 {
                     b.HasOne("BlitzFiles.Data.File", "File")
@@ -127,13 +91,7 @@ namespace BlitzFiles.Data.Migrations
 
             modelBuilder.Entity("BlitzFiles.Data.File", b =>
                 {
-                    b.Navigation("FilePath")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BlitzFiles.Data.User", b =>
-                {
-                    b.Navigation("Files");
+                    b.Navigation("FilePath");
                 });
 #pragma warning restore 612, 618
         }

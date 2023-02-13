@@ -70,11 +70,13 @@ namespace BlitzFiles.API.Controllers
             {
                 var fileDTO = new FileDTO()
                 {
-                    Name = file.Name,
+                    Id = Guid.NewGuid(),
+                    Name = file.FileName,
                     Extention = "file",
                     FileSize = file.Length,
                     FileHash = "123test",
-                    IsPublic = false
+                    UploadDate = DateTime.Now,
+                    ExpirationDate = DateTime.Now.AddHours(24)
                 };
 
                 var result = await _fileService.CreateAsync(fileDTO);

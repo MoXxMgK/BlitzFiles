@@ -17,7 +17,6 @@ namespace BlitzFiles.CQS
                 .AsNoTracking()
                 .Where(f => f.ExpirationDate >= request.ExpireDate)
                 .Include(f => f.FilePath)
-                .Include(f => f.User)
                 .ToListAsync(cancellationToken);
 
             return mapper.Map<IEnumerable<FileDTO>>(files);

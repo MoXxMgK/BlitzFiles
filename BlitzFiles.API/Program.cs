@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using BlitzFiles.Core;
 using BlitzFiles.CQS;
+using BlitzFiles.DataTransfer;
 
 namespace BlitzFiles.API
 {
@@ -20,7 +21,7 @@ namespace BlitzFiles.API
                 opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("BlitzFilesDB")));
 
             //builder.Services.AddAutoMapper(Assembly.Load("BlitzFiles.DataTransfer"));
-            builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            builder.Services.AddAutoMapper(Assembly.Load("BlitzFiles.DataTransfer"));
 
             builder.Services.AddScoped<IFileService, FileService>();
 
