@@ -18,8 +18,4 @@
     <ProjectReference Include="..\BlitzFiles.Models\BlitzFiles.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CommandHandlers\FilePath\" />
-  </ItemGroup>
-
 </Project>

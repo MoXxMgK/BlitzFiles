@@ -24,6 +24,8 @@ namespace BlitzFiles.API
             builder.Services.AddAutoMapper(Assembly.Load("BlitzFiles.DataTransfer"));
 
             builder.Services.AddScoped<IFileService, FileService>();
+            builder.Services.AddScoped<IFilePathService, FilePathService>();
+            builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
 
             builder.Services.AddMediatR(Assembly.Load("BlitzFiles.CQS"));
 

@@ -5,12 +5,12 @@ namespace BlitzFiles.CQS
 {
     public class FilePathQuery
     {
-        public class GetById : FilePathQuery, IRequest<FilePathDTO>
+        public class GetById : IRequest<FilePathDTO>
         {
             public Guid Id { get; set; }
         }
 
-        public class GetByFileId : FilePathQuery, IRequest<FilePathDTO>
+        public class GetByFileId : IRequest<FilePathDTO>
         {
             public Guid FileId { get; set; }
         }

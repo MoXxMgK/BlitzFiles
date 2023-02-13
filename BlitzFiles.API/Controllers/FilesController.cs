@@ -12,12 +12,16 @@ namespace BlitzFiles.API.Controllers
     public class FilesController : ControllerBase
     {
         private readonly IFileService _fileService;
+        private readonly IFilePathService _filePathService;
+        private readonly IFileStorageService _fileStorageService;
         private readonly IMapper _mapper;
 
-        public FilesController(IFileService fileService, IMapper mapper)
+        public FilesController(IFileService fileService, IMapper mapper, IFilePathService filePathService, IFileStorageService fileStorageService)
         {
             _fileService = fileService;
             _mapper = mapper;
+            _filePathService = filePathService;
+            _fileStorageService = fileStorageService;
         }
 
         [HttpGet("{id}")]
@@ -64,22 +68,52 @@ namespace BlitzFiles.API.Controllers
         [ProducesResponseType(typeof(FileResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status500InternalServerError)]
+        [RequestFormLimits(MultipartBodyLengthLimit = 2000000000L)]
+        [RequestSizeLimit(200000000L)]
         public async Task<IActionResult> UploadFile(IFormFile file)
         {
             try
             {
+                var fileStream = file.OpenReadStream();
+
+                var fileHash = fileStream.CreateMD5();
+
+                var fileCheck = await _fileService.GetFileByFileHash(fileHash);
+
+                // File is already on serrver
+                if (fileCheck.Result == OperationResult.OK)
+                {
+                    var model = _mapper.Map<FileResponseModel>(fileCheck.DTO);
+                    return Ok(model);
+                }
+
+                // ELSE Store new file and send info back to user
+
+                var fileStorageName = await _fileStorageService.StoreFileAsync(fileStream);
+
+                var fileParts = SplitFileName(file.FileName);
+
                 var fileDTO = new FileDTO()
                 {
                     Id = Guid.NewGuid(),
-                    Name = file.FileName,
-                    Extention = "file",
+                    Name = fileParts.Item1,
+                    Extention = fileParts.Item2,
                     FileSize = file.Length,
-                    FileHash = "123test",
+                    FileHash = fileHash,
                     UploadDate = DateTime.Now,
                     ExpirationDate = DateTime.Now.AddHours(24)
                 };
 
+                var filePathDTO = new FilePathDTO()
+                {
+                    Id = Guid.NewGuid(),
+                    StorageFileName = fileStorageName,
+                    FileId = fileDTO.Id
+                };
+
                 var result = await _fileService.CreateAsync(fileDTO);
+
+                await _filePathService.CreateAsync(filePathDTO);
 
                 if (result.Result == OperationResult.OK)
                 {
@@ -104,6 +138,16 @@ namespace BlitzFiles.API.Controllers
 
                 return Problem(detail: errorModel.Message, statusCode: errorModel.StatusCode);
             }
+        }
+
+        [NonAction]
+        private Tuple<string, string> SplitFileName(string fileName)
+        {
+            var tokens = fileName.Split(".");
+            string name = tokens[0];
+            string ext = tokens[^1];
+
+            return new Tuple<string, string>(name, ext);
         }
     }
 }

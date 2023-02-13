@@ -65,6 +65,23 @@ namespace BlitzFiles.Business
             }
         }
 
+        public async Task<CRUDResult<FileDTO>> GetFileByFileHash(string fileHash)
+        {
+            var dto = await _mediator.Send(new FileQuery.GetByFileHash()
+            {
+                FileHash = fileHash
+            });
+
+            if (dto == null)
+            {
+                return new CRUDResult<FileDTO>();
+            }
+            else
+            {
+                return new CRUDResult<FileDTO>(dto);
+            }
+        }
+
         public Task<CRUDResult<FileDTO>> PatchAsync(Guid id, FileDTO dto)
         {
             throw new NotImplementedException();

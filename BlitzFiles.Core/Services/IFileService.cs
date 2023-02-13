@@ -5,6 +5,6 @@ namespace BlitzFiles.Core
 {
     public interface IFileService : ICRUDService<FileDTO>
     {
-
+        Task<CRUDResult<FileDTO>> GetFileByFileHash(string fileHash);
     }
 }
